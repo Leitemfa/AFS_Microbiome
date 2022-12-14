@@ -1100,11 +1100,11 @@ output$parameters$sigMu['FLO',]
 gjamPredict(selected.model, y2plot = colnames(selected.model$inputs$y)) #predict the data in-sample
 xdataMF     <- selected.model$inputs$xdata
 xdataMF$LandUse <- rep("FLO", length(xdataMF$LandUse))     # mean for x[,3]
-newdata   <- list(xdata = xdataMF[1:2,c(1,ncol(xdataMF))], nsim = 50 )
+newdata   <- list(xdata = xdataMF[1:2,c(1,ncol(xdataMF))], nsim = 5000 )
 p1 <- gjamPredict(selected.model, newdata = newdata)
 View(p1$sdList$yMu)
 summary(p1$sdList$yMu)
-origdata   <- list(xdata = xdataC[,c(1,ncol(xdataC))], nsim = 50 )
+origdata   <- list(xdata = xdataC[,c(1,ncol(xdataC))], nsim = 5000 )
 porig <- gjamPredict(selected.model, newdata = origdata)
 heatmap(porig$sdList$yMu[xdataC$LandUse == "FLO",])
 #What should I change?
@@ -1122,7 +1122,7 @@ AllLists <-apply(as.data.frame(yMF),1,function(x) cbind(x,yMF))
 View(AllLists)
 dim(AllLists)
 dim(xdataC)
-newSB    <- list(ydataCond = AllLists[1:161,], nsim=50)
+newSB    <- list(ydataCond = AllLists[1:161,], nsim=5000)
 mature <- gjamPredict(selected.model, newdata = newSB) 
 heatmap(mature$sdList$yMu[,c(bact, fungi)])
 
